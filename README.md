@@ -80,6 +80,7 @@ app name should not be same as your web application or mobile application.On aft
 
 1. Import connector ZIP artifact in wavemaker applications and go to profile properties
 Provide values for following properties
+
 ```
 connector.aws-sns-connector.default.aws.accessKey=<<aws key>>
 connector.aws-sns-connector.default.aws.accessSecret=<<aws secret key>>
@@ -91,16 +92,7 @@ connector.aws-sns-connector.default.fcm.application.server.key=<<firebase secret
 
 1. In WaveMaker application, drag pushNotification prefab into your page.
 Go to prefab configuration provides firebase config values you have saved in previous steps.such as
-```
-apiKey: "",
-authDomain: "",
-databaseURL: "",
-projectId: "",
-storageBucket: "",
-messagingSenderId: "",
-appId: "",
-measurementId: "" 
-```
+![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/TokenVariable.jpeg?raw=true)
 
 
 ### Register token and publish message
@@ -115,8 +107,10 @@ public void registerToken(String token){
    AWSSNSFCMResponse awssnsfcmresponse = awssnsfcmConnector.registerToken(token, user);
 }
 ```
+
 1. Create a service variable for above register token and map prefab token to token, such as 
-![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/FirebaseProjectSettings.jpeg?raw=true)
+![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/TokenVariable.jpeg?raw=true)
+
 1. Publish notification message in your WaveMaker application by using following api
 ```
 @Autowired
@@ -132,6 +126,6 @@ request.setBody(""Body of the notification"")
 awssnsfcmConnector.publishMessage(request);
 ```
 1. On after publishing notification, you should see notification in your browser as
-![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/FirebaseProjectSettings.jpeg?raw=true)
+![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/NotificationSample.jpeg?raw=true)
 
 
