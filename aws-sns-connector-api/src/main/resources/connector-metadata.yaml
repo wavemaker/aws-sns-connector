@@ -1,0 +1,4 @@
+version: "1.0"
+name: "aws-sns-connector"
+description: "This connecctor provide apis to interact with AWS SNS"
+springConfigurationClass: "com.wavemaker.connector.aws.sns.config.AWSSNSConnectorConfiguration"
