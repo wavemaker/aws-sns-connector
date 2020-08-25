@@ -46,21 +46,21 @@ Step 1,2 & 3 are needed only if you are implementing FCM push notification.
 
 ## Build
 You can build this connector using following command
-```
-mvn clean install -DskipTests
-```
+    ```
+    mvn clean install -DskipTests
+    ```
 
 ## Basic SNS apis
 
 Using following connector, user can manage SNS topics, subscriptions and publish messages to topic.
-```
+    ```
 @Autowired
 private AWSSNSConnector awssnsConnector;
 
 String topicArn = awssnsConnector.createTopic("Topic");
 awssnsConnector.subscribe(new AWSSNSSubscribeRequest(topicArn, SNSTopicProtocol.EMAIL, endPointArn));
 awssnsConnector.publishMessage(topicArn,"Hi hello world");
-```
+    ```
 
 ## SNS- FCM Push Notifications configuration
 1. Go to https://console.firebase.google.com/
@@ -81,14 +81,14 @@ app name should not be same as your web application or mobile application.On aft
 1. Import connector ZIP artifact in wavemaker applications and go to profile properties
 Provide values for following properties
 
-```
+    ```
 connector.aws-sns-connector.default.aws.accessKey=<<aws key>>
 connector.aws-sns-connector.default.aws.accessSecret=<<aws secret key>>
 connector.aws-sns-connector.default.aws.clientRegion=<<aws region, note only few regions supports platform application such as US_EAST_1 >>
 connector.aws.account.id= << aws user account id such as 402700149789>>
 connector.aws-sns-connector.default.aws.sns.fcm.platform.application.name=<<aws sns platform application name >>
 connector.aws-sns-connector.default.fcm.application.server.key=<<firebase secret key you have copied in previous steps >>
-```
+    ```
 
 1. In WaveMaker application, drag pushNotification prefab into your page.
 Go to prefab configuration provides firebase config values you have saved in previous steps.such as
@@ -98,7 +98,7 @@ Go to prefab configuration provides firebase config values you have saved in pre
 ### Register token and publish message
 1. Prefab will generate token using firebase configuration.This token has to register to SNS firebase platform application.
 1. Create a java service in WaveMaker application
-```
+   ```
 @Autowired
 private AWSSNSFCMConnector awssnsfcmConnector;
 
@@ -106,13 +106,13 @@ public void registerToken(String token){
    User user = new User(securityService.getLoggedInUser().getUserId(),securityService.getLoggedInUser().getUsername());
    AWSSNSFCMResponse awssnsfcmresponse = awssnsfcmConnector.registerToken(token, user);
 }
-```
+    ```
 
 1. Create a service variable for above register token and map prefab token to token, such as 
 ![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/TokenVariable.jpeg?raw=true)
 
 1. Publish notification message in your WaveMaker application by using following api
-```
+    ```
 @Autowired
 private AWSSNSFCMConnector awssnsfcmConnector;
 
@@ -124,7 +124,7 @@ request.setBody(""Body of the notification"")
                 .setIcon_click_url("https://www.wavemaker.com/learn/documentation-reference")
                 .setUser(user);
 awssnsfcmConnector.publishMessage(request);
-```
+    ```
 1. On after publishing notification, you should see notification in your browser as
 ![alt text](https://github.com/wavemaker/aws-sns-connector/blob/master/readmeImages/NotificationSample.jpeg?raw=true)
 
