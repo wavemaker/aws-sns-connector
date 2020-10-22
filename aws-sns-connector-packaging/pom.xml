@@ -28,6 +28,7 @@
             <plugin>
                 <groupId>com.wavemaker.connector.build</groupId>
                 <artifactId>wavemaker-connector-build-maven-plugin</artifactId>
+                <version>10.5.6</version>
                 <configuration>
                     <connectorId>aws-sns-connector</connectorId>
                 </configuration>

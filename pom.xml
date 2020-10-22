@@ -18,7 +18,7 @@
     <name>aws-sns-connector</name>
 
     <properties>
-        <wavemaker-version>10.5.3</wavemaker-version>
+        <wavemaker-version>10.5.6</wavemaker-version>
     </properties>
 
 

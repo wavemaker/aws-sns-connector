@@ -50,7 +50,7 @@ public class AWSSNSFCMConnectorImpl implements AWSSNSFCMConnector {
     public void publishMessage(AWSSNSFCMRequest request) {
         String firstName = getFirstName(request.getUser().getUserName());
         String userId = request.getUser().getUserId();
-        String topicArn = "arn:aws:sns:"+ awsProps.getClientRegion().name().toLowerCase()+ ":"+awsProps.getAws_account_id()+":Topic_" + userId + "_" + firstName.toLowerCase();
+        String topicArn = "arn:aws:sns:"+ awsProps.getClientRegion().getName()+ ":"+awsProps.getAws_account_id()+":Topic_" + userId + "_" + firstName.toLowerCase();
         String replaceMessage = message.replace("$body", request.getBody())
                 .replace("$title", request.getTitle())
                 .replace("$icon", request.getIcon())
@@ -63,6 +63,7 @@ public class AWSSNSFCMConnectorImpl implements AWSSNSFCMConnector {
         awssnsPublishRequest.setMessage(replaceMessage);
         awssnsPublishRequest.setMessageStructure("json");
         awssnsPublishRequest.setTopicArn(topicArn);
+        logger.info("AWSSNSPublishRequest details " + awssnsPublishRequest);
         awssnsConnector.publishMessage(awssnsPublishRequest);
     }
 

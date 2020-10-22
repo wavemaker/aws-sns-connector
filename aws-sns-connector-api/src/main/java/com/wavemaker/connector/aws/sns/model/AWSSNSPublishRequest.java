@@ -91,5 +91,16 @@ public class AWSSNSPublishRequest {
         this.messageAttributes = messageAttributes == null ? null : new HashMap<String, AWSSNSMessageAttributeValue>(messageAttributes);
     }
 
-
+    @Override
+    public String toString() {
+        return "AWSSNSPublishRequest{" +
+                "topicArn='" + topicArn + '\'' +
+                ", targetArn='" + targetArn + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", message='" + message + '\'' +
+                ", subject='" + subject + '\'' +
+                ", messageStructure='" + messageStructure + '\'' +
+                ", messageAttributes=" + messageAttributes +
+                '}';
+    }
 }
