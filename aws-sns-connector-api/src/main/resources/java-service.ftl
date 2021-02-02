@@ -42,7 +42,7 @@ public class ${className} {
          AWSSNSFCMResponse awssnsResponse = awssnsConnector.registerToken(token, user);
     }
 
-	public void publishMessageToAdmin(String body,String icon,String title,String userId, String userName) {
+	public void publishMessage(String body,String icon,String title,String userId, String userName) {
          User user = new User(userId, userName);
          AWSSNSFCMRequest request = new AWSSNSFCMRequest();
          request.setBody(body)
